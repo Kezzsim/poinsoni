@@ -1,13 +1,34 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using SimpleJSON;
+using System.IO;
 using UnityEngine;
 
 public class pulsewave : MonoBehaviour
 {
     Vector3 value;
+    Datapoint[] points;
+    private string pointsDataFileName = "testsample.json";
+
+    public GameObject pointed;
+
+    public class Datapoint
+    {
+        public Vector3 pos;
+        public Vector3 sca;
+
+        public Datapoint(Vector3 posit, Vector3 radi)
+        {
+            pos = posit;
+            sca = radi;
+        }
+    }
+
+
     void Start()
     {
-        
+        LoadPointsData();
+        drawPoints();
     }
 
     void Update()
@@ -25,4 +46,52 @@ public class pulsewave : MonoBehaviour
             transform.localScale = value;
         }
     }
+
+    private void LoadPointsData()
+    {
+        string filePath = Path.Combine(Application.streamingAssetsPath, pointsDataFileName);
+
+        if (File.Exists(filePath))
+        {
+            // Read the json from the file into a string
+            string dataAsJson = File.ReadAllText(filePath);
+            var js = JSON.Parse(dataAsJson);
+            // Find the points object in the JSON
+            foreach(JSONNode pts in js.Children)
+            {
+                int ptNumber = pts.Count;
+                points = new Datapoint[ptNumber];
+                foreach (JSONNode pt in pts.Children)
+                {
+                    float ptX = pt["x"];
+                    float ptY = pt["y"];
+                    float ptZ = pt["z"];
+                    float ptR = pt["r"];
+
+                    Vector3 position = new Vector3(ptX, ptY, ptZ);
+                    Vector3 radius = new Vector3(ptR, ptR, ptR);
+
+                    ptNumber--;
+                    points[ptNumber] = new Datapoint(position, radius);
+
+                }
+
+            }
+        }
+        else
+        {
+            Debug.LogError("Cannot load game data!");
+        }
+    }
+
+    private void drawPoints()
+    {
+        for (int i = 0; i < points.Length; i++)
+        {
+            Instantiate(pointed);
+            pointed.transform.position = points[i].pos;
+            pointed.transform.localScale = points[i].sca;
+        }
+    }
+
 }
