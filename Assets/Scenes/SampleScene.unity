@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657856, g: 0.49641234, b: 0.57481724, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -209,7 +209,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 241702887}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.02, y: -0.149, z: 0.524}
+  m_LocalPosition: {x: 0.002, y: 0.02, z: 0.52}
   m_LocalScale: {x: 0.11265, y: 0.11265, z: 0.11265}
   m_Children: []
   m_Father: {fileID: 534669905}
@@ -285,7 +285,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26468f5f987254f81903bbea7db1974a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pointsDataFileName: AllData.json
   pointed: {fileID: 7695930444496844954, guid: a1be722bb55d8497d9d259a180da090b, type: 3}
+  maxNumberOfPoints: 500
+  positionScaleFactor: 100
+  sizeScaleFactor: 50
 --- !u!1 &534669902
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,14 +366,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
-  m_LocalRotation: {x: -0, y: -0.15873227, z: -0, w: 0.9873217}
-  m_LocalPosition: {x: -0.12375048, y: 1, z: -10.813862}
+  m_LocalRotation: {x: 0.07798013, y: -0.41338876, z: 0.035560593, w: 0.9065122}
+  m_LocalPosition: {x: -0.85297465, y: 3.2191, z: -7.605277}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 241702888}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -18.267, z: 0}
+  m_LocalEulerAnglesHint: {x: 9.833, y: -49.028004, z: 0}
 --- !u!114 &534669906
 MonoBehaviour:
   m_ObjectHideFlags: 0

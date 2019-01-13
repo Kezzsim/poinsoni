@@ -8,9 +8,12 @@ public class pulsewave : MonoBehaviour
 {
     Vector3 value;
     Datapoint[] points;
-    private string pointsDataFileName = "testsample.json";
+    public string pointsDataFileName = "testsample.json";
 
     public GameObject pointed;
+    public int maxNumberOfPoints;
+    public float positionScaleFactor;
+    public float sizeScaleFactor;
 
     public class Datapoint
     {
@@ -63,10 +66,24 @@ public class pulsewave : MonoBehaviour
                 points = new Datapoint[ptNumber];
                 foreach (JSONNode pt in pts.Children)
                 {
-                    float ptX = pt["x"];
-                    float ptY = pt["y"];
-                    float ptZ = pt["z"];
-                    float ptR = pt["r"];
+
+                    float ptX, ptY, ptZ, ptR;
+
+                    if (positionScaleFactor == 0)
+                    {
+                        ptX = (pt["x"]);
+                        ptY = (pt["y"]);
+                        ptZ = (pt["z"]);
+                        ptR = (pt["r"]);
+                    }
+                    else
+                    {
+                        ptX = (pt["x"] / positionScaleFactor);
+                        ptY = (pt["y"] / positionScaleFactor);
+                        ptZ = (pt["z"] / positionScaleFactor);
+                        ptR = (pt["r"] / sizeScaleFactor);
+                    }
+                    
 
                     Vector3 position = new Vector3(ptX, ptY, ptZ);
                     Vector3 radius = new Vector3(ptR, ptR, ptR);
@@ -86,7 +103,8 @@ public class pulsewave : MonoBehaviour
 
     private void drawPoints()
     {
-        for (int i = 0; i < points.Length; i++)
+        //Using maxNumberOfPoints instead of points.Length because the default sample data is too large to load at once
+        for (int i = 0; i < maxNumberOfPoints; i++)
         {
             Instantiate(pointed);
             pointed.transform.position = points[i].pos;
