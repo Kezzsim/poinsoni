@@ -286,10 +286,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointsDataFileName: AllData.json
-  pointed: {fileID: 7695930444496844954, guid: a1be722bb55d8497d9d259a180da090b, type: 3}
-  maxNumberOfPoints: 500
-  positionScaleFactor: 100
-  sizeScaleFactor: 50
+  pointed: {fileID: 3369932837348020115, guid: 6ceee839762a55246b055d6a70965e7a, type: 3}
+  maxNumberOfPoints: 8409
+  positionScaleFactor: 50
+  sizeScaleFactor: 40
 --- !u!1 &534669902
 GameObject:
   m_ObjectHideFlags: 0

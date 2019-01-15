@@ -5,14 +5,13 @@ using UnityEngine;
 public class pointAction : MonoBehaviour
 {
 
-    public AudioSource testSound;
+  
     public ParticleSystem particles;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        testSound = GetComponent<AudioSource>();
 
     }
 
@@ -24,7 +23,7 @@ public class pointAction : MonoBehaviour
 
     void OnTriggerEnter(Collider wave)
     {
-        testSound.Play();
+ 
         GameObject particle = Instantiate(particles.gameObject, this.transform);
 
     }
