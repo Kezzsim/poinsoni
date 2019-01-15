@@ -288,8 +288,8 @@ MonoBehaviour:
   pointsDataFileName: AllData.json
   pointed: {fileID: 3369932837348020115, guid: 6ceee839762a55246b055d6a70965e7a, type: 3}
   maxNumberOfPoints: 8409
-  positionScaleFactor: 50
-  sizeScaleFactor: 40
+  positionScaleFactor: 70
+  sizeScaleFactor: 50
 --- !u!1 &534669902
 GameObject:
   m_ObjectHideFlags: 0
