@@ -7,10 +7,11 @@ using UnityEngine;
 public class pulsewave : MonoBehaviour
 {
     Vector3 value;
-    Datapoint[] points;
-    public string pointsDataFileName = "testsample.json";
+    public string firstDataFileName = "testsample.json";
+    public string secondDataFileName = "testsample.json";
 
-    public GameObject pointed;
+    public GameObject pointed1;
+    public GameObject pointed2;
     public int maxNumberOfPoints;
     public float positionScaleFactor;
     public float sizeScaleFactor;
@@ -30,8 +31,8 @@ public class pulsewave : MonoBehaviour
 
     void Start()
     {
-        LoadPointsData();
-        drawPoints();
+        drawPoints(LoadPointsData(firstDataFileName), pointed1);
+        drawPoints(LoadPointsData(secondDataFileName), pointed2);
     }
 
     void Update()
@@ -50,10 +51,10 @@ public class pulsewave : MonoBehaviour
         }
     }
 
-    private void LoadPointsData()
+    private Datapoint[] LoadPointsData(string jsonName)
     {
-        string filePath = Path.Combine(Application.streamingAssetsPath, pointsDataFileName);
-
+        string filePath = Path.Combine(Application.streamingAssetsPath, jsonName);
+        Datapoint[] points;
         if (File.Exists(filePath))
         {
             // Read the json from the file into a string
@@ -90,26 +91,42 @@ public class pulsewave : MonoBehaviour
 
                     ptNumber--;
                     points[ptNumber] = new Datapoint(position, radius);
-
                 }
-
+                return points;
             }
         }
         else
         {
             Debug.LogError("Cannot load game data!");
+            points = new Datapoint[0];
+            return points;
         }
+        points = new Datapoint[0];
+        return points;
     }
 
-    private void drawPoints()
+    private void drawPoints(Datapoint[] dp, GameObject pto)
     {
         //Using maxNumberOfPoints instead of points.Length because the default sample data is too large to load at once
-        for (int i = 0; i < maxNumberOfPoints; i++)
+        if(maxNumberOfPoints != 0 && maxNumberOfPoints <= dp.Length)
         {
-            Instantiate(pointed);
-            pointed.transform.position = points[i].pos;
-            pointed.transform.localScale = points[i].sca;
+            for (int i = 0; i < maxNumberOfPoints; i++)
+            {
+                Instantiate(pto);
+                pto.transform.position = dp[i].pos;
+                pto.transform.localScale = dp[i].sca;
+            }
         }
+        else
+        {
+            for (int i = 0; i < dp.Length; i++)
+            {
+                Instantiate(pto);
+                pto.transform.position = dp[i].pos;
+                pto.transform.localScale = dp[i].sca;
+            }
+        }
+
     }
 
 }

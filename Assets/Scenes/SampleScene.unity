@@ -285,11 +285,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26468f5f987254f81903bbea7db1974a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointsDataFileName: AllData.json
-  pointed: {fileID: 3369932837348020115, guid: 6ceee839762a55246b055d6a70965e7a, type: 3}
-  maxNumberOfPoints: 8409
+  firstDataFileName: TopGrain.json
+  secondDataFileName: BottomGrain.json
+  pointed1: {fileID: 5133005779052212540, guid: 82eabc14deb854d47a275d7ca2457ba5,
+    type: 3}
+  pointed2: {fileID: 5133005779052212540, guid: 1819fc8c5614d3748a8deaa31026090b,
+    type: 3}
+  maxNumberOfPoints: 0
   positionScaleFactor: 70
-  sizeScaleFactor: 50
+  sizeScaleFactor: 40
 --- !u!1 &534669902
 GameObject:
   m_ObjectHideFlags: 0
