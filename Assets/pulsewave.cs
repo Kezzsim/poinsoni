@@ -8,6 +8,7 @@ public class pulsewave : MonoBehaviour
 {
     Vector3 grow, go;
     Vector3 originSize, originPos;
+    Collider m_Collider;
     public string firstDataFileName = "testsample.json";
     public string secondDataFileName = "testsample.json";
 
@@ -36,6 +37,8 @@ public class pulsewave : MonoBehaviour
         drawPoints(LoadPointsData(secondDataFileName), pointed2);
         originPos = transform.localPosition;
         originSize = transform.localScale;
+        m_Collider = GetComponent<Collider>();
+        m_Collider.enabled = false;
     }
 
     void Update()
@@ -55,11 +58,13 @@ public class pulsewave : MonoBehaviour
 
             transform.localScale = grow;
             transform.localPosition = go;
+            m_Collider.enabled = true;
         }
         else
         {
             transform.localScale = originSize;
             transform.localPosition = originPos;
+            m_Collider.enabled = false;
         }
     }
 
