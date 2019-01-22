@@ -6,7 +6,8 @@ using UnityEngine;
 
 public class pulsewave : MonoBehaviour
 {
-    Vector3 value;
+    Vector3 grow, go;
+    Vector3 originSize, originPos;
     public string firstDataFileName = "testsample.json";
     public string secondDataFileName = "testsample.json";
 
@@ -33,6 +34,8 @@ public class pulsewave : MonoBehaviour
     {
         drawPoints(LoadPointsData(firstDataFileName), pointed1);
         drawPoints(LoadPointsData(secondDataFileName), pointed2);
+        originPos = transform.localPosition;
+        originSize = transform.localScale;
     }
 
     void Update()
@@ -42,12 +45,21 @@ public class pulsewave : MonoBehaviour
             //OnMouseClick and hold, box increaces in size, colliding with points and generating events
             //Eventually will also be mapped to vive controller trigger
             float t = Time.deltaTime;
-            value = transform.localScale;
-            value.x += t;
-            value.y += t;
-            value.z += t;
+            grow = transform.localScale;
+            grow.x += t;
+            grow.y += t;
+            grow.z += t;
 
-            transform.localScale = value;
+            go = transform.localPosition;
+            go.z += t;
+
+            transform.localScale = grow;
+            transform.localPosition = go;
+        }
+        else
+        {
+            transform.localScale = originSize;
+            transform.localPosition = originPos;
         }
     }
 
